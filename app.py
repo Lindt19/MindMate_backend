@@ -39,6 +39,8 @@ currentPath = os.path.dirname(os.path.abspath(__file__))  # Current absolute fil
 subfolders = [ f.path for f in os.scandir(currentPath) if f.is_dir() ]
 logging.debug("Subfolders: " + str(subfolders))
 
+logging.debug("Content of /data: " + str([ f.path for f in os.scandir(f"{currentPath}/data") if f.is_dir() ]))
+
 # Chatbot settings
 useGoogle = "no"  # Yes - Bei nicht wissen durchsucht der Bot google nach dem unbekannten Begriff und gibt einen Link. No - Google wird nicht zur Hilfe gezogen
 confidenceLevel = 0.70  # Bot confidence level - Muss zwischen 0 und 1 liegen. Je höher der Wert, desto sicherer muss sich der Bot seiner Antwort sein
