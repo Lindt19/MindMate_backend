@@ -29,7 +29,7 @@ nltk.download("punkt")
 # Initialize Flask for webapp
 app = Flask(__name__)
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
-FLASK_PORT = 8006  # use 8080 for local setup
+FLASK_PORT = os.environ.get('PORT', 8080)  # use 8080 for local setup
 
 CORS(app)
 
@@ -276,4 +276,4 @@ def receive_text():
 
 if __name__ == "__main__":
     # using debug=True makes GPT unavailable
-    app.run()
+    app.run(port=FLASK_PORT)
