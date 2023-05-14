@@ -39,7 +39,7 @@ currentPath = os.path.dirname(os.path.abspath(__file__))  # Current absolute fil
 subfolders = [ f.path for f in os.scandir(currentPath) if f.is_dir() ]
 logging.debug("Subfolders: " + str(subfolders))
 
-logging.debug("Content of /data: " + str([ f.path for f in os.scandir(f"{currentPath}/data") if f.is_dir() ]))
+logging.debug("Content of /data: " + str([ f.path for f in os.scandir(f"{currentPath}/data")]))
 
 # Chatbot settings
 useGoogle = "no"  # Yes - Bei nicht wissen durchsucht der Bot google nach dem unbekannten Begriff und gibt einen Link. No - Google wird nicht zur Hilfe gezogen
@@ -58,7 +58,7 @@ chatBotDate = strftime("%d.%m.%Y, %H:%M", localtime())
 chatBotTime = strftime("%H:%M", localtime())
 
 # create an instance of the chatbot
-chatomatic = Chatomatic("/data/DialoguesEN.yml", language="en")
+chatomatic = Chatomatic("./data/DialoguesEN.yml", language="en")
 
 
 
