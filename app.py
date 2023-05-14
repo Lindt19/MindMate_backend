@@ -58,7 +58,7 @@ chatBotDate = strftime("%d.%m.%Y, %H:%M", localtime())
 chatBotTime = strftime("%H:%M", localtime())
 
 # create an instance of the chatbot
-chatomatic = Chatomatic("./data/DialoguesEN.yml", language="en")
+chatomatic = Chatomatic(f"{currentPath}/data/DialoguesEN.yml", language="en")
 
 
 
