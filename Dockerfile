@@ -11,7 +11,9 @@ RUN python -m spacy download en_core_web_sm
 
 COPY . .
 
-ADD data /data
+COPY ./data/Dialogues.yml /data/Dialogues.yml
+
+COPY ./data/DialoguesEn.yml /data/DialoguesEn.yml
 
 CMD [ "python", "-m", "app"]
 

@@ -34,9 +34,9 @@ FLASK_PORT = os.environ.get('PORT', 8080)  # use 8080 for local setup
 CORS(app)
 
 # Application settings
-# logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG)
 currentPath = os.path.dirname(os.path.abspath(__file__))  # Current absolute file path
-# logging.debug("Current path: " + currentPath)
+logging.debug("Current path: " + currentPath)
 
 # Chatbot settings
 useGoogle = "no"  # Yes - Bei nicht wissen durchsucht der Bot google nach dem unbekannten Begriff und gibt einen Link. No - Google wird nicht zur Hilfe gezogen
