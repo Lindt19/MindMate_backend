@@ -27,11 +27,11 @@ MODEL = "gpt-3.5-turbo"
 nltk.download("punkt")
 
 # Initialize Flask for webapp
-application = Flask(__name__)
-application.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
+app = Flask(__name__)
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 FLASK_PORT = 8006  # use 8080 for local setup
 
-CORS(application)
+CORS(app)
 
 # Application settings
 # logging.basicConfig(level=logging.DEBUG)
@@ -77,13 +77,13 @@ def writeCsv(filePath, data):
 
 
 # Flask route for Emma
-@application.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def home_emma():
     return render_template("index.html")
 
 
 # Flask route for getting bot responses
-@application.route("/getResponse", methods=["POST"])
+@app.route("/getResponse", methods=["POST"])
 def get_bot_response():
     """
     Basic communication with the chatbot. Uses this route to send text and return reply from the chatbot. Uses
@@ -180,7 +180,7 @@ def get_bot_response():
 
 
 ## Flask route for posting feedback
-@application.route("/feedback", methods=["POST"])
+@app.route("/feedback", methods=["POST"])
 def send_feedback():
     data = request.get_json()
     bot = data.get("bot")
@@ -197,7 +197,7 @@ def send_feedback():
     return jsonify({"success": True}, 200, {"ContentType": "application/json"})
 
 
-@application.route("/evaluate", methods=["POST"])
+@app.route("/evaluate", methods=["POST"])
 def evaluate():
     """
     Provides feedback of the argumentative essay using chatGPT.
@@ -208,7 +208,7 @@ def evaluate():
 
 # Added to implement the file transfer for reading the pdf and giving corresponding answer
 #  GET AND POST are required - otherwise : method not allowed error
-@application.route("/texttransfer", methods=["POST"])
+@app.route("/texttransfer", methods=["POST"])
 def receive_text():
     """
     Provides feedback of the reflection essay using nltk and spacy library. Used for static chatbot.
@@ -276,4 +276,4 @@ def receive_text():
 
 if __name__ == "__main__":
     # using debug=True makes GPT unavailable
-    application.run()
+    app.run()

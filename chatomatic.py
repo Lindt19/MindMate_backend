@@ -5,7 +5,7 @@ import random
 from rank_bm25 import *
 import numpy as np
 import json
-import yaml
+from strictyaml import load
 from sentence_transformers import SentenceTransformer, util
 
 sent_sim_model = SentenceTransformer('sentence-transformers/msmarco-distilbert-base-tas-b')
@@ -18,7 +18,7 @@ class Chatomatic:
 
     def _load_from_yaml(self, file_name):
         with open(file_name, 'r', encoding="utf-8") as f:
-            conversations = yaml.safe_load(f)['conversations']
+            conversations = load(f.read()).data['conversations']
             new_questions = []
             for conversation in conversations:
                 answers = []

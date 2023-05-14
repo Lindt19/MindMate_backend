@@ -1,0 +1,9 @@
+# Ignore everything specified in .gitignore
+#!include:.gitignore
+
+# Exclude locally installed dependencies
+venv/
+
+# Exclude git history and configuration.
+.git/
+.gitignore
