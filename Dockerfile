@@ -11,6 +11,8 @@ RUN pip install -r requirements.txt
 
 RUN python -m spacy download en_core_web_sm
 
+COPY data data
+
 COPY . .
 
 CMD [ "python", "app.py"]
