@@ -11,7 +11,7 @@ RUN python -m spacy download en_core_web_sm
 
 COPY . .
 
-COPY data /data
+ADD data /data
 
 CMD [ "python", "-m", "app"]
 
