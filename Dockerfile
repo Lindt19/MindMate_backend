@@ -5,15 +5,15 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /code
 
-COPY requirements.txt requirements.txt
+COPY ./requirements.txt /code
 
-RUN pip install -r requirements.txt
+RUN pip install -r /code/requirements.txt
 
 RUN python -m spacy download en_core_web_sm
 
-COPY data data
+COPY ./data /code/data
 
-COPY . .
+COPY . /code
 
 CMD [ "python", "app.py"]
 
