@@ -84,23 +84,32 @@ conversations:
       and I'll also show you how to structure your reflections in your writing.</p>
       <p>To start reflecting, you have two options: Either a 'static' one where you will enter you reflective text and have general feedback
       or an 'interactive' version for a more dynamic conversation where I can provide guidelines and a more adaptive feedback. You can choose
-      one of the two options by clicking on the corresponding buttons</p>
+      one of the two options by clicking on the corresponding buttons bellow </p>
     <p>I am still in training, but I will do my best to help you! Try using the buttons to navigate through the learning environment. &#128515; </p>
     <h4> Learning </h4>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('I would like to learn more about the importance of reflections');\">I would like to learn more about the importance of reflections</button>
     <h4> More information </h4>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('How can you help me, MindMate?');\">How can you help me, MindMate?</button>"
+    <button class=\"chatSuggest\" onclick=\"chatSuggest('How can you help me, MindMate?');\">How can you help me, MindMate?</button>
+    <h4> Static </h4>
+         <button class=\"chatSuggest\" onclick=\"displayELEA('5001/');return false;\">Open the textfield</button>
+    <h4> Interactive </h4>
+      <button class=\"chatSuggest\" onclick=\"chatSuggest('Let us rather chat');\">Let us rather chat</button>"
   -
-    - StartGPT
+    - Let us rather chat
     - "<p>You are now using the interactive reflection version. It consists of a normal conversation where I will ask you questions to guide your reflection
      and provide feedback accordingly.</p>
-     <p>First I will provide guidelines on how to write reflective texts, then you will have the chance to send me with your own so that I can
-     provide feedback and improvements.</p>
-      <p>Tell me when you are ready to start &#128521;</p>
+     <p>I can also provide guidelines on how to write reflective texts. Whenever you feel ready, you can click on the 'start reflecting' button bellow. You will have the chance to send me with your own text so that I can
+     provide feedback and improvements &#128521; .</p>
       <h4> Get some theory </h4>
         <button class=\"chatSuggest\" onclick=\"chatSuggest('Get some theory');\">Get some theory</button>
       <h4> Start reflecting </h4>
          <button class=\"chatSuggest\" onclick=\"chatSuggest('Start reflecting');\">Start reflecting</button>"
+
+  -
+    - Start reflecting
+    - "<p>Take a moment to reflect on a past experience that holds significance to you. Consider the details, emotions, and insights associated with that experience. Start by recalling the event, and then dive deeper into how it made you feel, what you learned from it, and how you can improve in the future.</p>
+        <p>You should provide a text of at least 100 words &#128521;</p>"
+
   -
     - I want to learn more about the importance of reflections
     - "<p>Very good! What do you want to deal with first? &#129299;</p>
@@ -108,16 +117,22 @@ conversations:
     <h4>Theoretical overview</h4>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('What is reflective writing ?');\">What is reflective writing?</button>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('Why is reflective journaling useful in learning processes?');\">Why is reflective journaling useful in learning processes?</button>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('What is objectivity and how can I improve it?');\">How can I improve my reflections?</button>"
+    <button class=\"chatSuggest\" onclick=\"chatSuggest('What is objectivity and how can I improve it?');\">How can I improve my reflections?</button>
+    <h4> Static </h4>
+             <button class=\"chatSuggest\" onclick=\"displayELEA('5001/');return false;\">Open the textfield</button>
+        <h4> Interactive </h4>
+          <button class=\"chatSuggest\" onclick=\"chatSuggest('Let us rather chat');\">Let us rather chat</button>"
   -
     - Could we look at the theory?
     - "<p>Of course we can take a closer look at the theory! What do you want to investigate first? &#129299;</p>
-           <p>If you have questions about how to make your essays more persuasive, or if you want to learn more about argumentation in general, you've come to the right place!</p>
+           <p>If you have questions about how to structure your reflective essays, or if you want to learn more about reflection in general, you've come to the right place!</p>
            <h4>Theoretical overview</h4>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('What is an argumentation?');\">What is an argumentation?</button>
+    <button class=\"chatSuggest\" onclick=\"chatSuggest('What is reflective writing?');\">What is reflective writing?</button>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('Why is reflective journaling useful in learning processes?');\">Why is reflective journaling useful in learning processes?</button>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('What is objectivity and how can I improve it?');\">What is objectivity and how can I improve it?</button>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('How can I learn argumentation skills?');\">How can I learn argumentation skills?</button>"
+    <h4> Static </h4>
+             <button class=\"chatSuggest\" onclick=\"displayELEA('5001/');return false;\">Open the textfield</button>
+        <h4> Interactive </h4>
+          <button class=\"chatSuggest\" onclick=\"chatSuggest('start reflecting');\">start reflecting</button>"
   -
     - How is the sentiment measured?
     - "<p>There are a variety of methods used to measure sentiment by different researchers in the field.</p>
@@ -205,7 +220,11 @@ conversations:
            <h4>Learning material</h4>
     <button class=\"chatSuggest\" onclick=\"playVideo('SntBj0FIApw');return false;\">Video: Reflective writing overview </button>
     <h4>More Details</h4>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('Could you be more specific about the structure of reflective texts??');\">Structure of reflective texts</button>"
+    <button class=\"chatSuggest\" onclick=\"chatSuggest('Could you be more specific about the structure of reflective texts?');\">Structure of reflective texts</button>
+    <h4> Static </h4>
+             <button class=\"chatSuggest\" onclick=\"displayELEA('5001/');return false;\">Open the textfield</button>
+        <h4> Interactive </h4>
+          <button class=\"chatSuggest\" onclick=\"chatSuggest('start reflecting');\">start reflecting</button>"
   -
     - Could you elaborate more on the structure of reflective texts?
     - "<p>Yes, of course! I can go into further detail by explaining to you the structure of a reflective essay.</p>

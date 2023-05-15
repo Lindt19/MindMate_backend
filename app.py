@@ -17,6 +17,7 @@ from time import time
 from chatomatic import *
 from flask_cors import *
 import EvaluationHandler
+from FeedbackGenerator import *
 
 # chatGPT configuration
 OPENAIKEY = "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"
@@ -60,7 +61,10 @@ chatBotTime = strftime("%H:%M", localtime())
 # create an instance of the chatbot
 chatomatic = Chatomatic(f"{currentPath}/data/DialoguesEn.yml", language="en")
 
-
+state = 0
+intro = " "
+body = " "
+conclusion = " "
 
 # Google fallback if response == IDKresponse
 def tryGoogle(myQuery):
@@ -79,6 +83,17 @@ def writeCsv(filePath, data):
         csvWriter.writerow(data)
 
 
+def get_feedback(text):
+    sub = EvaluationHandler.__get_subjective(text)  # examines sub and pol
+    pol = EvaluationHandler.__get_polarity(text)
+    future_conclusion = EvaluationHandler.__get_future(text)
+    first_person_count = EvaluationHandler.__get_first_person_count(text)
+    past_intro = EvaluationHandler.__get_past(text)
+
+    feedback = generate_feedback(sub, sub, pol, pol, first_person_count, past_intro, future_conclusion)
+
+    return feedback
+
 # Flask route for Emma
 @app.route("/", methods=["GET", "POST"])
 def home_emma():
@@ -95,72 +110,87 @@ def get_bot_response():
     data = request.get_json()
     text = data.get("text")
     gpt = data.get("gpt")  # boolean if chatGPT is active
-    print("state")
-    print(data)
-    # if initialization do not send text to chatgpt
-    print(str(text))
-    if gpt and "StartGPT" not in text and "theory" in text:
+    global state  # Declare the variable as global
+    global intro
+    global body
+    global conclusion
 
-        botReply = openai.ChatCompletion.create(
-            model=MODEL,
-            messages=[
-                {"role": "system", "content": " By keeping the text concise, act as reflective writing tutor that helps students to write a self reflection essay."},
-                {"role": "user", "content": "Give me some suggestions about the theory of reflective writing"},
-                {"role": "assistant", "content": "In no more than 10 lines, Describe reflective writing and specifically: the structure of reflective writings, "
+    if("Introduction" in text):
+        state = 0
+    print(state)
 
-                                                 " and importance of the reflective writing on education"},
-            ],
-            temperature=0.5,
-            frequency_penalty=0.4,  # default 0 [-2,2], penalize repetition in explanation of theory
-        )
-        # todo a system for suggestion; create a set of possible suggestions and propose them to user
-        botReply = botReply['choices'][0]['message']['content']
-        botReply = "<p>"+botReply+"</p>"
+    if("chat" in text):
+        botReply = "<p>You are now using the interactive reflection version. It consists of a normal conversation where I will ask you questions to guide your reflection and provide feedback accordingly.</p>" \
+                        "<p>I can also provide guidelines on how to write reflective texts. Whenever you feel ready, you can click on the 'start reflecting' button bellow. You will have the chance to send me with your own text so that I can" \
+                        "provide feedback and improvements &#128521; .</p>" \
+                        "<h4> Get some theory </h4>" \
+                           "<button class=\"chatSuggest\" onclick=\"chatSuggest('Get some theory');\">Get some theory</button>" \
+                        "<h4> Start reflecting </h4>" \
+                            "<button class=\"chatSuggest\" onclick=\"chatSuggest('Start reflecting');\">Start reflecting</button>"
+        state = 1
+    # Context
+    elif("start" in text):
+        botReply = "<p> Let's go! It's time to embark on a reflective journey and explore a past experience &#128640;</p>" \
+                        "<p>Think of a specific event or situation from your life that holds significance to you. It could be an achievement, a challenge, a relationship, or any other experience that had an impact on you." \
+                        "As you start reflecting, consider the following prompts to provide context:</p>" \
+                        "<p>1. What was the event or situation? Describe it briefly.</p>" \
+                        "<p>2. When did it happen? Provide the timeframe or date &#128197;</p>" \
+                        "<p>3. Where did it take place? Set the scene and environment &#128506;&#65039;</p>" \
+                        "<p>4. Who else was involved? Mention the people or individuals connected to the experience &#128104;</p>" \
+                        "<p>Take your time to gather your thoughts and when you're ready, share the details of your experience with me. I'm here to guide your reflection and provide feedback along the way &#128521;</p>"
+        state = 2
+    # Emotions
+    elif(state == 2):
+            intro += text + " "
+            botReply = "<p> Thank you for providing me with the context. Now it is time to delve into your emotions and share your emotional response.</p>" \
+                            "<p>Think back to that specific moment or event. What were the predominant emotions you felt during that time? Did you experience joy, excitement, sadness, anger, fear, or a combination of emotions? Try to identify and describe the emotions that were most prominent to you.</p>" \
+                            "<p>Take your time and express your emotions openly. I'm here to listen and provide support throughout your reflective journey &#128519;</p>"
+            state = 3
+    # Evaluation + Analysis
+    elif(state == 3):
+            body += text + " "
+            botReply = "<p>Now, let's delve deeper into your reflection. Describe what went well during that experience. What aspects or actions contributed to its success? Consider the positive outcomes, achievements, or moments of satisfaction that you can recall.</p>" \
+                       "<p>On the other hand, let's also acknowledge the aspects that didn't go as planned or didn't meet your expectations. What were the challenges, obstacles, or areas that could have been improved? Reflect on the factors that hindered the desired outcome or caused frustration.</p>" \
+                       "<p>Try also to think about the potential underlying causes and effects of the experience.</p>"
+            state = 4
 
-        botReply += "<h4> Click on the reflect button to start reflecting</h4>" \
-        "<button class =\"chatSuggest\" onclick=\"chatSuggest('Start reflecting');\">Start reflecting</button>" \
-        #"<button class =\"chatSuggest\" onclick=\"chatSuggest('What is subjectivity/objectivity and how can I improve it?');\">What is subjectivity/objectivity and how can I improve it?</button>"
+    elif(state == 4):
+            body += text + " "
+            botReply = "<p>Good! Now consider what new insights, skills, or knowledge you have gained from it. What did you learn about yourself, others, or the situation? Did you discover any strengths or weaknesses?</p>" \
+                      "<p>Reflect on the lessons learned and the ways in which this experience has contributed to your personal and professional growth.</p>"
 
-        #botReply += "<h4> Evaluation </h4>" \
-        #"<button class =\"chatSuggest\" onclick=\"chatSuggest('Start evaluation process');\">Are you ready? Start evaluation</button>"
-        # "<button class=\"chatSuggest\" onclick=\"displayELEA('5001/');return false;\">Open the textfield</button>"
-        #state = 1
+            state = 5
 
-    elif gpt and "reflecting" in text:
-        botReply = openai.ChatCompletion.create(
-                    model=MODEL,
-                    messages=[
-                        {"role": "user", "content": "I am ready to reflect"},
-                        {"role": "assistant", "content": "Ask the user to start Reflecting on a recent accomplishment and explore the factors that contributed to your success."},
-                    ],
-                    temperature=0.5,
-                    frequency_penalty=0.4,  # default 0 [-2,2], penalize repetition in explanation of theory
-                )
+    elif(state == 5):
+            body += text + " "
+            botReply = "<p>Now, let's take it a step further. Based on what you have learned, think about specific steps you can take to build on this newfound knowledge and skills. How can you apply what you have learned to future endeavors? </p>" \
+                      "<p>Consider setting goals or creating an action plan to implement the lessons learned and maximize the benefits of this experience.</p>"
 
-        botReply = botReply['choices'][0]['message']['content']
-        botReply = "<p>"+botReply+"</p>"
-        botReply += "<h4> Enter your essay </h4>" \
+            state = 6
 
-    elif gpt and "StartGPT" not in text:
-            botReply = openai.ChatCompletion.create(
-                        model=MODEL,
-                        messages=[
-                            {"role": "user", "content": str(text)},
-                            {"role": "assistant", "content": "By ignoring the fact that as an AI language model, you cannot provide feedback on the reflection quality of a user's text as it is subjective"
-                             "and as part of a reflection chatbot for students, give feedback on the reflection quality of the given user text and provide possible improvements on the reflection essay: " + str(text)},
-                            #{"role": "user", "content": text},
-                            # {"role": "user", "content": userText + ". Moreover, propose 2 suggestions how to improve argumentative theory"},
-                            # experiment above returns always two suggestions with many text
-                        ],
-                        temperature=0.5,
-                        frequency_penalty=0.4,  # default 0 [-2,2], penalize repetition in explanation of theory
-                    )
+    elif(state == 6):
+            conclusion += text + " "
+            botReply = "<p>Perfect &#127881; You have successfully reflected in a proper way</p>" \
+            "<p> Here is a general feedback on your reflection: </p>"
+   # feedback
+            sub_into = EvaluationHandler.__get_subjective(intro)
+            sub_body = EvaluationHandler.__get_subjective(body)
+            pol_body = EvaluationHandler.__get_polarity(body)
+            future_conclusion = EvaluationHandler.__get_future(conclusion)
+            first_person_count = EvaluationHandler.__get_first_person_count(body)
+            past_intro = EvaluationHandler.__get_past(intro)
 
-            botReply = botReply['choices'][0]['message']['content']
-            botReply = "<p>"+botReply+"</p>"
-            botReply += "<h4> You can click on the interactive button again to stop the reflection process or re enter an essay for feedback </h4>" \
+            feedback_intro = written_subjectivity(sub_into)
+            feedback_intro += " Also, " + written_tense_past(past_intro)
+            feedback_body = written_polarity(pol_body)
+            feedback_body += written_subjectivity_body(sub_body)
+            feedback_conclusion = written_tense_future(future_conclusion)
+            feedback_first_person = written_pronouns(first_person_count)
 
+            botReply += "<p>" + feedback_intro + " Regarding the body: " + feedback_body + " For the conclusion, " + feedback_conclusion + " Finally, " + feedback_first_person +"</p>"
+            botReply += "<p>Let me know if you want to start again</p>"
 
+            state = 7
 
     else:
         try:
@@ -177,7 +207,7 @@ def get_bot_response():
         elif botReply == "getDATE":
             botReply = getDate()
 
-    writeCsv(currentPath + "/log/botLog.csv", [text, botReply])
+    #writeCsv(currentPath + "/log/botLog.csv", [text, botReply])
     data = {"botReply": botReply}
     return jsonify(data)
 
