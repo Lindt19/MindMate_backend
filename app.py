@@ -253,55 +253,52 @@ def receive_text():
     intro = request.get_json().get("intro")
     body = request.get_json().get("body")
     conclusion = request.get_json().get("conclusion")
-    print(intro)
-    print(body)
-    print(conclusion)
+
 
     # used for not english text
     # translated_text = EvaluationHandler.__translate_to_english(received_text)
 
     sentences = EvaluationHandler.__sentences(received_text)
 
-    sub = EvaluationHandler.__get_subjective(received_text)  # examines sub and pol
-    pol = EvaluationHandler.__get_polarity(received_text)
+    #sub = EvaluationHandler.__get_subjective(received_text)  # examines sub and pol
+    #pol = EvaluationHandler.__get_polarity(received_text)
     summary = EvaluationHandler.__get_summary(received_text)
-    ascending_sentence_polarities = EvaluationHandler.__get_asc_polarity_per_sentence(sentences)
-    ascending_sentence_subjectivities = EvaluationHandler.__get_asc_subjectivity_per_sentence(sentences)
-    emotions = EvaluationHandler.__get_emotion(received_text)
+    #ascending_sentence_polarities = EvaluationHandler.__get_asc_polarity_per_sentence(sentences)
+   # ascending_sentence_subjectivities = EvaluationHandler.__get_asc_subjectivity_per_sentence(sentences)
+    #emotions = EvaluationHandler.__get_emotion(received_text)
 
-    sub_intro = EvaluationHandler.__get_subjective(intro)  # examines sub and pol
-    pol_intro = EvaluationHandler.__get_polarity(intro)
+    #sub_intro = EvaluationHandler.__get_subjective(intro)  # examines sub and pol
+    #pol_intro = EvaluationHandler.__get_polarity(intro)
 
-    sub_body = EvaluationHandler.__get_subjective(body)  # examines sub and pol
-    pol_body = EvaluationHandler.__get_polarity(body)
+   # sub_body = EvaluationHandler.__get_subjective(body)  # examines sub and pol
+   # pol_body = EvaluationHandler.__get_polarity(body)
 
-    sub_conclusion = EvaluationHandler.__get_subjective(conclusion)  # examines sub and pol
-    pol_conclusion = EvaluationHandler.__get_polarity(conclusion)
-    # TODO add function to see the use of future verbs for conclusion
+    #sub_conclusion = EvaluationHandler.__get_subjective(conclusion)  # examines sub and pol
+   #pol_conclusion = EvaluationHandler.__get_polarity(conclusion)
 
-    future_conclusion = EvaluationHandler.__get_future(conclusion)
+    #future_conclusion = EvaluationHandler.__get_future(conclusion)
 
-    first_person_count = EvaluationHandler.__get_first_person_count(received_text)
+    #first_person_count = EvaluationHandler.__get_first_person_count(received_text)
 
-    past_intro = EvaluationHandler.__get_past(intro)
+    #past_intro = EvaluationHandler.__get_past(intro)
 
     data = {
-        "subjectivity": sub,
-        "polarity": pol,
-        "subjectivity_intro": sub_intro,
-        "polarity_intro": pol_intro,
-        "subjectivity_body": sub_body,
-        "polarity_body": pol_body,
-        "subjectivity_conclusion": sub_conclusion,
-        "polarity_conclusion": pol_conclusion,
+        "subjectivity": 0,
+        "polarity": 0,
+        "subjectivity_intro": 0,
+        "polarity_intro": 0,
+        "subjectivity_body": 0,
+        "polarity_body": 0,
+        "subjectivity_conclusion": 0,
+        "polarity_conclusion": 0,
         "summary": summary,
         "text": received_text,
-        "pol_per_sentence": ascending_sentence_polarities,
-        "sub_per_sentence": ascending_sentence_subjectivities,
-        "emotions": emotions,
-        "first_person_count": first_person_count,
-        "future_conclusion": future_conclusion,
-        "past_intro": past_intro
+        "pol_per_sentence": 0,
+        "sub_per_sentence": 0,
+        "emotions": 0,
+        "first_person_count": 0,
+        "future_conclusion": 0,
+        "past_intro": 0
     }
 
     return jsonify(data)

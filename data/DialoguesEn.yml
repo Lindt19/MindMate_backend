@@ -64,10 +64,10 @@ conversations:
     - "I think so &#129322;"
   -
     - What can I do?
-    - "<p>I'm glad you asked that. I was programmed to help you write great argumentative texts by providing you with sentiment analysis. &#128522;</p>
-          <p> Depending on the desired writing style, it is important to keep the overall mood of your essay in mind. You can learn more about this in the theory.
+    - "<p>I'm glad you asked that. I was programmed to help you write great reflective texts by providing you with constructive feedback. &#128522;</p>
+          <p> It is important to keep the overall structure of your essay in mind. You can learn more about this in the theory.
           <p> Often students simply forget to consciously use positive/negative or subjective elements in their essays. Your essay can become too one-sided by being too positive or negative, or it can become too subjective or objective.
-                            I help you to keep track of both areas and thus build a good and balanced argument structure so that you can achieve your desired goal! &#128521; </p>
+                            I help you to keep track of both areas and thus build a good and balanced reflective structure so that you can achieve your desired goal! &#128521; </p>
           <button class=\"chatSuggest\" onclick=\"chatSuggest('What else can you do?');\">What else can you do?</button>
           <h4> Theory </h4>
           <button class=\"chatSuggest\" onclick=\"chatSuggest('Could we look at the theory?');\">Could we look at the theory?</button>"
@@ -117,7 +117,7 @@ conversations:
     <h4>Theoretical overview</h4>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('What is reflective writing ?');\">What is reflective writing?</button>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('Why is reflective journaling useful in learning processes?');\">Why is reflective journaling useful in learning processes?</button>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('What is objectivity and how can I improve it?');\">How can I improve my reflections?</button>
+    <button class=\"chatSuggest\" onclick=\"chatSuggest('How can I improve my reflections?');\">How can I improve my reflections?</button>
     <h4> Static </h4>
              <button class=\"chatSuggest\" onclick=\"displayELEA('5001/');return false;\">Open the textfield</button>
         <h4> Interactive </h4>
@@ -139,19 +139,24 @@ conversations:
            <p>Sentiment analysis (also called opinion mining) uses natural language processing, text analysis and other linguistic tools to identify, analyse, structure and categorise a given text. This includes categorising the strength of opinion and objectivity, both of which form the overall mood of the text. &#128209;</p>
            <h4>Components of sentiment analysis</h4>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('Why is reflective journaling useful in learning processes?');\">Why is reflective journaling useful in learning processes?</button>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('What is subjectivity/objectivity and how can I improve it?');\">What is subjectivity/objectivity and how can I improve it?</button>
     <h4>Theoretical overview</h4>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('I want to learn more about the basics of argumentation');\">Back</button>"
+    <button class=\"chatSuggest\" onclick=\"chatSuggest('I want to learn more about the basics of reflection');\">Back</button>"
   -
 
-    - What is subjectivity/objectivity and how can I improve it?
-    - "<p>Objectivity depends on the writing style you choose. It is very difficult to remain 100% objective when writing an argument. But depending on the audience you want to address, you should keep your subjectivity value in mind. When writing arguments, it is more beneficial to write an objective and fact-based text than to be subjective. The subjectivity of your text also reflects your emotional stance to some extent.
-           The overall goal is to remain objective when writing argumentation.</p>
-           <p> Learn more about argumentative writing here: </p>
-    <button class=\"chatSuggest\" onclick=\"playVideo('rFIa48RZYfc');return false;\">Video: How to write an argumentative essay</button>
+    - How can I improve my reflections?
+    - "<p>Reflecting effectively is a skill that can be developed and improved over time. Here are some tips for students to enhance their reflection abilities:</p>
+    <p>Ask probing questions: Instead of simply recounting what happened, go deeper by asking yourself thought-provoking questions. </p>
+    <p>Be honest and open: Reflecting requires honesty and self-awareness. Be open to acknowledging both the positive and negative aspects of the experience, as well as your own strengths and weaknesses.</p>
+    <p>Practice self-reflection regularly: Make reflection a habit by setting aside dedicated time for introspection. Consider journaling, meditation, or having meaningful conversations with mentors or peers to facilitate the reflection process. </p>
+    <p>Use a structured framework: Utilize reflection frameworks or models such as Gibbs' Reflective Cycle, Kolb's Experiential Learning Cycle, or Bloom's Taxonomy of Reflection. These frameworks provide a structure to guide your reflection process and ensure a comprehensive analysis. </p>
+           <p> Learn more about reflective writing here: </p>
     <h4>Theoretical overview</h4>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('Can you explain more about the structure of arguments?');\">Structure of the arguments</button>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('I want to learn more about the basics of argumentation');\">Back</button>"
+        <button class=\"chatSuggest\" onclick=\"chatSuggest('What is reflective writing?');\">What is reflective writing?</button>
+        <button class=\"chatSuggest\" onclick=\"chatSuggest('Why is reflective journaling useful in learning processes?');\">Why is reflective journaling useful in learning processes?</button>
+        <h4> Static </h4>
+                 <button class=\"chatSuggest\" onclick=\"displayELEA('5001/');return false;\">Open the textfield</button>
+            <h4> Interactive </h4>
+              <button class=\"chatSuggest\" onclick=\"chatSuggest('start reflecting');\">start reflecting</button>"
   -
     - Start the evaluation process
     - "<p>I would like to briefly explain how MindMate analyses your reflective essay. </p>
@@ -237,25 +242,7 @@ conversations:
            <p>Here is a great video that goes into more detail. </p>
     <button class=\"chatSuggest\" onclick=\"playVideo('SntBj0FIApw');return false;\">Video: Reflective writing overview</button>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('I want to learn more about the basics of reflective writing');\">Back</button>"
-  -
-    - Can you tell me about the different parts of argumentative essays?
-    - "<p>Yes, of course! Let me show you the outline in three different parts.</p>
-           <p>An argument is divided into three parts: Introduction, Body and Conclusion.</p>
-           <p>The introduction section of an argumentation should, on the one hand, arouse the reader's interest and, on the other hand, lead to the topic without already anticipating the first arguments or basic thoughts. At the end of the introduction follows your thesis (assertion), so it is the last sentence of the introduction.</p> <p>The main body is where you make at least your thesis.
-           <p>In the main part, at least three arguments are developed that support the thesis. Each argument justifies the thesis and forms its own section. Each argument is illustrated with an example or evidence.
-           <p>The concluding section of an argument once again summarises in short words your now consolidated conviction (thesis) and makes it clear that there is only this one logical conclusion for you.</p>
-           <h4>Introduction, main body, conclusion</h4>.
-           <p>Arguments - especially the arguments of the main body - should be presented objectively and factually to achieve the desired goal: to convince the reader.</p>
-           <p>You should pay special attention to your emotional attitude when writing argumentation. In principle, it can be said that arguments should be kept neutral. However, this also depends on the context and the target group.
-           With my help, you can always keep an eye on your emotional attitude!
-    <button class=\"chatSuggest\" onclick=\"displayWebsite('www.smekenseducation.com/wp-content/uploads/bsk-pdf-manager/2020/06/Op_v_Pers_v_Arg.pdf');return false;\">Different writing styles for your essay</button>
-    <p>There are really great videos that you can learn a lot from. Here is a good video:</p>
-        <h4>Learning material</h4>
-    <button class=\"chatSuggest\" onclick=\"playVideo('SKlhoKT8ApM');return false;\">Video: Structure of an argument</button>
-    <h4>Theoretical overview</h4>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('Could you explain more about the structure of arguments?');\">Structure of the argument</button>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('I want to learn more about the basics of argumentation');\">Back</button>
-   "
+
   -
     - Why is reflective journaling useful in learning processes?
     - "<p> By reflecting on what happened and why, individuals can develop their critical thinking skills and gain a deeper understanding of themselves and the world around them.
