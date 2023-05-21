@@ -153,3 +153,19 @@ def __get_past(text):
     # Filter for verbs in the future tense
     past_tense_verbs = [word for word, tag in tagged_words if tag == "VBD"]
     return len(past_tense_verbs)
+
+def __get_named_entities(text):
+    doc = nlp_en(text)
+    named_entities = [(entity.text, entity.label_) for entity in doc.ents]
+    print("Named Entities:", named_entities)
+    return named_entities
+
+def __get_causal_keywords(text):
+    keywords = ["cause", "result", "because", "due to", "lead to", "caused", "causes", "causing", "resulted", "results"]
+
+    found_keywords = [keyword for keyword in keywords if keyword in text.lower()]
+
+    if found_keywords:
+        return 1
+    else:
+        return 0

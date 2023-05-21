@@ -59,12 +59,10 @@ chatBotDate = strftime("%d.%m.%Y, %H:%M", localtime())
 chatBotTime = strftime("%H:%M", localtime())
 
 # create an instance of the chatbot
-chatomatic = Chatomatic(f"{currentPath}/data/DialoguesEn.yml", language="en")
+chatomatic = Chatomatic(f"{currentPath}/data/DialoguesDe.yml", language="de")
 
+states = {}
 state = 0
-intro = " "
-body = " "
-conclusion = " "
 
 # Google fallback if response == IDKresponse
 def tryGoogle(myQuery):
@@ -115,9 +113,26 @@ def get_bot_response():
     global body
     global conclusion
 
+    uuid = data.get("uuid")
+    print(uuid)
+
+    if uuid not in states:
+        states[uuid] = {
+            "state": 0,
+            "context": "",
+            "emotions": "",
+            "analysis": "",
+            "evaluation": "",
+            "plan": "",
+            "text": ""
+        }
+
+    session_state = states[uuid]
+    state = session_state["state"]
+
     if("Introduction" in text):
-        state = 0
-    print(state)
+        session_state["state"] = 0
+    print(session_state["state"])
 
     if("chat" in text):
         botReply = "<p>You are now using the interactive reflection version. It consists of a normal conversation where I will ask you questions to guide your reflection and provide feedback accordingly.</p>" \
@@ -127,9 +142,9 @@ def get_bot_response():
                            "<button class=\"chatSuggest\" onclick=\"chatSuggest('Get some theory');\">Get some theory</button>" \
                         "<h4> Start reflecting </h4>" \
                             "<button class=\"chatSuggest\" onclick=\"chatSuggest('Start reflecting');\">Start reflecting</button>"
-        state = 1
+        session_state["state"] = 1
     # Context
-    elif("start" in text):
+    elif("beginnen" in text):
         botReply = "<p> Let's go! It's time to embark on a reflective journey and explore a past experience &#128640;</p>" \
                         "<p>Think of a specific event or situation from your life that holds significance to you. It could be an achievement, a challenge, a relationship, or any other experience that had an impact on you." \
                         "As you start reflecting, consider the following prompts to provide context:</p>" \
@@ -138,59 +153,58 @@ def get_bot_response():
                         "<p>3. Where did it take place? Set the scene and environment &#128506;&#65039;</p>" \
                         "<p>4. Who else was involved? Mention the people or individuals connected to the experience &#128104;</p>" \
                         "<p>Take your time to gather your thoughts and when you're ready, share the details of your experience with me. I'm here to guide your reflection and provide feedback along the way &#128521;</p>"
-        state = 2
+        session_state["state"] = 2
     # Emotions
-    elif(state == 2):
-            intro += text + " "
+    elif(session_state["state"] == 2):
+            session_state["context"] += text + " "
+            session_state["text"] += text + " "
             botReply = "<p> Thank you for providing me with the context. Now it is time to delve into your emotions and share your emotional response.</p>" \
                             "<p>Think back to that specific moment or event. What were the predominant emotions you felt during that time? Did you experience joy, excitement, sadness, anger, fear, or a combination of emotions? Try to identify and describe the emotions that were most prominent to you.</p>" \
                             "<p>Take your time and express your emotions openly. I'm here to listen and provide support throughout your reflective journey &#128519;</p>"
-            state = 3
+            session_state["state"] = 3
     # Evaluation + Analysis
-    elif(state == 3):
-            body += text + " "
+    elif(session_state["state"] == 3):
+            session_state["emotions"] += text + " "
+            session_state["text"] += text + " "
+
             botReply = "<p>Now, let's delve deeper into your reflection. Describe what went well during that experience. What aspects or actions contributed to its success? Consider the positive outcomes, achievements, or moments of satisfaction that you can recall.</p>" \
                        "<p>On the other hand, let's also acknowledge the aspects that didn't go as planned or didn't meet your expectations. What were the challenges, obstacles, or areas that could have been improved? Reflect on the factors that hindered the desired outcome or caused frustration.</p>" \
                        "<p>Try also to think about the potential underlying causes and effects of the experience.</p>"
-            state = 4
+            session_state["state"] = 4
 
-    elif(state == 4):
-            body += text + " "
+    elif(session_state["state"] == 4):
+            session_state["analysis"] += text + " "
+            session_state["text"] += text + " "
+
             botReply = "<p>Good! Now consider what new insights, skills, or knowledge you have gained from it. What did you learn about yourself, others, or the situation? Did you discover any strengths or weaknesses?</p>" \
                       "<p>Reflect on the lessons learned and the ways in which this experience has contributed to your personal and professional growth.</p>"
 
-            state = 5
+            session_state["state"] = 5
 
-    elif(state == 5):
-            body += text + " "
+    elif(session_state["state"] == 5):
+            session_state["evaluation"] += text + " "
+            session_state["text"] += text + " "
+
             botReply = "<p>Now, let's take it a step further. Based on what you have learned, think about specific steps you can take to build on this newfound knowledge and skills. How can you apply what you have learned to future endeavors? </p>" \
                       "<p>Consider setting goals or creating an action plan to implement the lessons learned and maximize the benefits of this experience.</p>"
 
-            state = 6
+            session_state["state"] = 6
 
-    elif(state == 6):
-            conclusion += text + " "
+    elif(session_state["state"] == 6):
+            session_state["plan"] += text + " "
+            session_state["text"] += text + " "
+
             botReply = "<p>Perfect &#127881; You have successfully reflected in a proper way</p>" \
             "<p> Here is a general feedback on your reflection: </p>"
    # feedback
-            sub_into = EvaluationHandler.__get_subjective(intro)
-            sub_body = EvaluationHandler.__get_subjective(body)
-            pol_body = EvaluationHandler.__get_polarity(body)
-            future_conclusion = EvaluationHandler.__get_future(conclusion)
-            first_person_count = EvaluationHandler.__get_first_person_count(body)
-            past_intro = EvaluationHandler.__get_past(intro)
 
-            feedback_intro = written_subjectivity(sub_into)
-            feedback_intro += " Also, " + written_tense_past(past_intro)
-            feedback_body = written_polarity(pol_body)
-            feedback_body += written_subjectivity_body(sub_body)
-            feedback_conclusion = written_tense_future(future_conclusion)
-            feedback_first_person = written_pronouns(first_person_count)
 
-            botReply += "<p>" + feedback_intro + " Regarding the body: " + feedback_body + " For the conclusion, " + feedback_conclusion + " Finally, " + feedback_first_person +"</p>"
+
+            #botReply += "<p>" + feedback_intro + " Regarding the body: " + feedback_body + " For the conclusion, " + feedback_conclusion + " Finally, " + feedback_first_person +"</p>"
+
             botReply += "<p>Let me know if you want to start again</p>"
 
-            state = 7
+            session_state["state"] = 7
 
     else:
         try:
@@ -208,7 +222,10 @@ def get_bot_response():
             botReply = getDate()
 
     #writeCsv(currentPath + "/log/botLog.csv", [text, botReply])
-    data = {"botReply": botReply}
+    data = {
+    "botReply": botReply,
+    "state": session_state["state"]
+    }
     return jsonify(data)
 
 
@@ -233,11 +250,69 @@ def send_feedback():
 @app.route("/evaluate", methods=["POST"])
 def evaluate():
     """
-    Provides feedback of the argumentative essay using chatGPT.
+    Provides feedback of the reflection essay.
     """
-    text = request.get_json().get("text")
+    data = request.get_json()
+    uuid = data.get("uuid")
+    print(uuid)
 
-    return
+    if uuid not in states:
+        states[uuid] = {
+                "state": 0,
+                "context": "",
+                "emotions": "",
+                "analysis": "",
+                "evaluation": "",
+                "plan": "",
+                "text": ""
+            }
+
+
+    session_state = states[uuid]
+    # used for not english text
+    translated_text = EvaluationHandler.__translate_to_english(session_state["text"])
+    #print(translated_text)
+    # Context
+    context =  session_state["context"]
+    translated_context = EvaluationHandler.__translate_to_english(session_state["text"])
+    context_past_tense = EvaluationHandler.__get_past(translated_context)
+    context_presence_of_named_entity = EvaluationHandler.__get_named_entities(translated_context)
+    # Emotions
+    translated_emotions = EvaluationHandler.__translate_to_english(session_state["emotions"])
+    emotions = EvaluationHandler.__get_emotion(translated_emotions)
+    # Analysis
+    analysis = session_state["analysis"]
+    translated_analysis = EvaluationHandler.__translate_to_english(analysis)
+    analysis_polarity = EvaluationHandler.__get_polarity(translated_analysis)
+    analysis_subjectivity = EvaluationHandler.__get_subjective(translated_analysis)
+    analysis_causal_keywords = EvaluationHandler.__get_causal_keywords(translated_analysis)
+    # Evaluation
+    evaluation = session_state["evaluation"]
+    translated_evaluation = EvaluationHandler.__translate_to_english(evaluation)
+    evaluation_polarity = EvaluationHandler.__get_polarity(translated_evaluation)
+    evaluation_subjectivity = EvaluationHandler.__get_subjective(translated_evaluation)
+    # Plan
+    translated_plan = EvaluationHandler.__translate_to_english( session_state["plan"])
+    plan_future_tense = EvaluationHandler.__get_future(translated_plan)
+
+    #first_person_count = EvaluationHandler.__get_first_person_count(received_text)
+
+    data = {
+                "context_past_tense": context_past_tense,
+                "context_presence_of_named_entity": context_presence_of_named_entity,
+                "emotions": emotions,
+                "analysis_polarity": analysis_polarity,
+                "analysis_subjectivity": analysis_subjectivity,
+                "analysis_causal_keywords": analysis_causal_keywords,
+                "evaluation_polarity": evaluation_polarity,
+                "evaluation_subjectivity": evaluation_subjectivity,
+                "plan_future_tense": plan_future_tense,
+                "text": session_state["text"],
+                "first_person_count": 0
+            }
+
+    return jsonify(data)
+
 
 # Added to implement the file transfer for reading the pdf and giving corresponding answer
 #  GET AND POST are required - otherwise : method not allowed error
@@ -250,55 +325,46 @@ def receive_text():
     received_text = request.get_json().get("text")
     received_text = received_text.replace("\\n", "\n")
 
-    intro = request.get_json().get("intro")
-    body = request.get_json().get("body")
-    conclusion = request.get_json().get("conclusion")
+    context = request.get_json().get("context")
+    emotions = request.get_json().get("emotions")
+    analysis = request.get_json().get("analysis")
+    evaluation = request.get_json().get("evaluation")
+    plan = request.get_json().get("plan")
 
 
     # used for not english text
-    # translated_text = EvaluationHandler.__translate_to_english(received_text)
+    translated_text = EvaluationHandler.__translate_to_english(received_text)
+    print(translated_text)
 
-    sentences = EvaluationHandler.__sentences(received_text)
+    # Context
+    context_past_tense = EvaluationHandler.__get_past(context)
+    context_presence_of_named_entity = EvaluationHandler.__get_named_entities(context)
+    # Emotions
+    emotions = EvaluationHandler.__get_emotion(received_text)
+    # Analysis
+    analysis_polarity = EvaluationHandler.__get_polarity(analysis)
+    analysis_subjectivity = EvaluationHandler.__get_subjective(analysis)
+    analysis_causal_keywords = EvaluationHandler.__get_causal_keywords(analysis)
+    # Evaluation
+    evaluation_polarity = EvaluationHandler.__get_polarity(evaluation)
+    evaluation_subjectivity = EvaluationHandler.__get_subjective(evaluation)
+    # Plan
+    plan_future_tense = EvaluationHandler.__get_future(plan)
 
-    #sub = EvaluationHandler.__get_subjective(received_text)  # examines sub and pol
-    #pol = EvaluationHandler.__get_polarity(received_text)
-    summary = EvaluationHandler.__get_summary(received_text)
-    #ascending_sentence_polarities = EvaluationHandler.__get_asc_polarity_per_sentence(sentences)
-   # ascending_sentence_subjectivities = EvaluationHandler.__get_asc_subjectivity_per_sentence(sentences)
-    #emotions = EvaluationHandler.__get_emotion(received_text)
-
-    #sub_intro = EvaluationHandler.__get_subjective(intro)  # examines sub and pol
-    #pol_intro = EvaluationHandler.__get_polarity(intro)
-
-   # sub_body = EvaluationHandler.__get_subjective(body)  # examines sub and pol
-   # pol_body = EvaluationHandler.__get_polarity(body)
-
-    #sub_conclusion = EvaluationHandler.__get_subjective(conclusion)  # examines sub and pol
-   #pol_conclusion = EvaluationHandler.__get_polarity(conclusion)
-
-    #future_conclusion = EvaluationHandler.__get_future(conclusion)
-
-    #first_person_count = EvaluationHandler.__get_first_person_count(received_text)
-
-    #past_intro = EvaluationHandler.__get_past(intro)
+    first_person_count = EvaluationHandler.__get_first_person_count(received_text)
 
     data = {
-        "subjectivity": 0,
-        "polarity": 0,
-        "subjectivity_intro": 0,
-        "polarity_intro": 0,
-        "subjectivity_body": 0,
-        "polarity_body": 0,
-        "subjectivity_conclusion": 0,
-        "polarity_conclusion": 0,
-        "summary": summary,
+        "context_past_tense": context_past_tense,
+        "context_presence_of_named_entity": context_presence_of_named_entity,
+        "emotions": emotions,
+        "analysis_polarity": analysis_polarity,
+        "analysis_subjectivity": analysis_subjectivity,
+        "analysis_causal_keywords": analysis_causal_keywords,
+        "evaluation_polarity": evaluation_polarity,
+        "evaluation_subjectivity": evaluation_subjectivity,
+        "plan_future_tense": plan_future_tense,
         "text": received_text,
-        "pol_per_sentence": 0,
-        "sub_per_sentence": 0,
-        "emotions": 0,
-        "first_person_count": 0,
-        "future_conclusion": 0,
-        "past_intro": 0
+        "first_person_count": first_person_count
     }
 
     return jsonify(data)
@@ -306,4 +372,4 @@ def receive_text():
 
 if __name__ == "__main__":
     # using debug=True makes GPT unavailable
-    app.run(host="0.0.0.0", port=int(FLASK_PORT))
+    app.run(host="127.0.0.1", port=int(FLASK_PORT))
