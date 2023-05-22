@@ -431,4 +431,4 @@ def receive_text():
 
 if __name__ == "__main__":
     # using debug=True makes GPT unavailable
-    app.run(host="127.0.0.1", port=int(FLASK_PORT))
+    app.run(host="0.0.0.0", port=int(FLASK_PORT))
