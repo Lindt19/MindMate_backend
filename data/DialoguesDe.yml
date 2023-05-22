@@ -232,8 +232,7 @@ conversations:
            <p>Schlussfolgerung: Die Schlussfolgerung sollte die wichtigsten Punkte und Ideen des Reflexionstextes zusammenfassen und eine abschließende Reflexion über das Thema oder die Erfahrung liefern. Der Autor kann auch Vorschläge für künftige Maßnahmen oder weitere Überlegungen machen.</p>
            <h4>Lernmaterial</h4>
            <p>Hier ist ein großartiges Video, das mehr ins Detail geht. </p>
-    <button class=\"chatSuggest\" onclick=\"playVideo('SntBj0FIApw');return false;\">Video: Überblick über reflektierendes Schreiben</button>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest(Ich möchte mehr über die Grundlagen des reflektierenden Schreibens lernen');\">Back</button>"
+    <button class=\"chatSuggest\" onclick=\"playVideo('SntBj0FIApw');return false;\">Video: Überblick über reflektierendes Schreiben</button>"
 
   -
     - Warum ist das Führen eines Reflexionsjournals für den Lernprozess nützlich?
