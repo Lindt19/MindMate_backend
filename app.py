@@ -134,77 +134,136 @@ def get_bot_response():
         session_state["state"] = 0
     print(session_state["state"])
 
+#    """  if("chat" in text):
+#         botReply = "<p>You are now using the interactive reflection version. It consists of a normal conversation where I will ask you questions to guide your reflection and provide feedback accordingly.</p>" \
+#                         "<p>I can also provide guidelines on how to write reflective texts. Whenever you feel ready, you can click on the 'start reflecting' button bellow. You will have the chance to send me with your own text so that I can" \
+#                         "provide feedback and improvements &#128521; .</p>" \
+#                         "<h4> Get some theory </h4>" \
+#                            "<button class=\"chatSuggest\" onclick=\"chatSuggest('Get some theory');\">Get some theory</button>" \
+#                         "<h4> Start reflecting </h4>" \
+#                             "<button class=\"chatSuggest\" onclick=\"chatSuggest('Start reflecting');\">Start reflecting</button>"
+#         session_state["state"] = 1
+#     # Context
+#     elif("beginnen" in text):
+#         botReply = "<p> Let's go! It's time to embark on a reflective journey and explore a past experience &#128640;</p>" \
+#                         "<p>Think of a specific event or situation from your life that holds significance to you. It could be an achievement, a challenge, a relationship, or any other experience that had an impact on you." \
+#                         "As you start reflecting, consider the following prompts to provide context:</p>" \
+#                         "<p>1. What was the event or situation? Describe it briefly.</p>" \
+#                         "<p>2. When did it happen? Provide the timeframe or date &#128197;</p>" \
+#                         "<p>3. Where did it take place? Set the scene and environment &#128506;&#65039;</p>" \
+#                         "<p>4. Who else was involved? Mention the people or individuals connected to the experience &#128104;</p>" \
+#                         "<p>Take your time to gather your thoughts and when you're ready, share the details of your experience with me. I'm here to guide your reflection and provide feedback along the way &#128521;</p>"
+#         session_state["state"] = 2
+#     # Emotions
+#     elif(session_state["state"] == 2):
+#             session_state["context"] += text + " "
+#             session_state["text"] += text + " "
+#             botReply = "<p> Thank you for providing me with the context. Now it is time to delve into your emotions and share your emotional response.</p>" \
+#                             "<p>Think back to that specific moment or event. What were the predominant emotions you felt during that time? Did you experience joy, excitement, sadness, anger, fear, or a combination of emotions? Try to identify and describe the emotions that were most prominent to you.</p>" \
+#                             "<p>Take your time and express your emotions openly. I'm here to listen and provide support throughout your reflective journey &#128519;</p>"
+#             session_state["state"] = 3
+#     # Evaluation + Analysis
+#     elif(session_state["state"] == 3):
+#             session_state["emotions"] += text + " "
+#             session_state["text"] += text + " "
+#
+#             botReply = "<p>Now, let's delve deeper into your reflection. Describe what went well during that experience. What aspects or actions contributed to its success? Consider the positive outcomes, achievements, or moments of satisfaction that you can recall.</p>" \
+#                        "<p>On the other hand, let's also acknowledge the aspects that didn't go as planned or didn't meet your expectations. What were the challenges, obstacles, or areas that could have been improved? Reflect on the factors that hindered the desired outcome or caused frustration.</p>" \
+#                        "<p>Try also to think about the potential underlying causes and effects of the experience.</p>"
+#             session_state["state"] = 4
+#
+#     elif(session_state["state"] == 4):
+#             session_state["analysis"] += text + " "
+#             session_state["text"] += text + " "
+#
+#             botReply = "<p>Good! Now consider what new insights, skills, or knowledge you have gained from it. What did you learn about yourself, others, or the situation? Did you discover any strengths or weaknesses?</p>" \
+#                       "<p>Reflect on the lessons learned and the ways in which this experience has contributed to your personal and professional growth.</p>"
+#
+#             session_state["state"] = 5
+#
+#     elif(session_state["state"] == 5):
+#             session_state["evaluation"] += text + " "
+#             session_state["text"] += text + " "
+#
+#             botReply = "<p>Now, let's take it a step further. Based on what you have learned, think about specific steps you can take to build on this newfound knowledge and skills. How can you apply what you have learned to future endeavors? </p>" \
+#                       "<p>Consider setting goals or creating an action plan to implement the lessons learned and maximize the benefits of this experience.</p>"
+#
+#             session_state["state"] = 6
+#
+#     elif(session_state["state"] == 6):
+#             session_state["plan"] += text + " "
+#             session_state["text"] += text + " "
+#
+#             botReply = "<p>Perfect &#127881; You have successfully reflected in a proper way</p>" \
+#             "<p> Here is a general feedback on your reflection: </p>"
+#             botReply += "<p>Let me know if you want to start again</p>"
+#
+#             session_state["state"] = 7
+#    """
     if("chat" in text):
         botReply = "<p>You are now using the interactive reflection version. It consists of a normal conversation where I will ask you questions to guide your reflection and provide feedback accordingly.</p>" \
-                        "<p>I can also provide guidelines on how to write reflective texts. Whenever you feel ready, you can click on the 'start reflecting' button bellow. You will have the chance to send me with your own text so that I can" \
-                        "provide feedback and improvements &#128521; .</p>" \
-                        "<h4> Get some theory </h4>" \
-                           "<button class=\"chatSuggest\" onclick=\"chatSuggest('Get some theory');\">Get some theory</button>" \
-                        "<h4> Start reflecting </h4>" \
-                            "<button class=\"chatSuggest\" onclick=\"chatSuggest('Start reflecting');\">Start reflecting</button>"
+                           "<p>I can also provide guidelines on how to write reflective texts. Whenever you feel ready, you can click on the 'start reflecting' button bellow. You will have the chance to send me with your own text so that I can" \
+                           "provide feedback and improvements &#128521; .</p>" \
+                           "<h4> Get some theory </h4>" \
+                              "<button class=\"chatSuggest\" onclick=\"chatSuggest('Get some theory');\">Get some theory</button>" \
+                           "<h4> Start reflecting </h4>" \
+                               "<button class=\"chatSuggest\" onclick=\"chatSuggest('Start reflecting');\">Start reflecting</button>"
         session_state["state"] = 1
-    # Context
+       # Context
     elif("beginnen" in text):
-        botReply = "<p> Let's go! It's time to embark on a reflective journey and explore a past experience &#128640;</p>" \
-                        "<p>Think of a specific event or situation from your life that holds significance to you. It could be an achievement, a challenge, a relationship, or any other experience that had an impact on you." \
-                        "As you start reflecting, consider the following prompts to provide context:</p>" \
-                        "<p>1. What was the event or situation? Describe it briefly.</p>" \
-                        "<p>2. When did it happen? Provide the timeframe or date &#128197;</p>" \
-                        "<p>3. Where did it take place? Set the scene and environment &#128506;&#65039;</p>" \
-                        "<p>4. Who else was involved? Mention the people or individuals connected to the experience &#128104;</p>" \
-                        "<p>Take your time to gather your thoughts and when you're ready, share the details of your experience with me. I'm here to guide your reflection and provide feedback along the way &#128521;</p>"
+        botReply = "<p> Los geht's! Es ist an der Zeit, sich auf eine nachdenkliche Reise zu begeben und eine vergangene Erfahrung zu erkunden &#128640;</p>" \
+                           "<p>Denken Sie an ein bestimmtes Ereignis oder eine Situation in Ihrem Leben, die für Sie von Bedeutung ist. Das kann eine Errungenschaft, eine Herausforderung, eine Beziehung oder eine andere Erfahrung sein, die einen Einfluss auf Sie hatte." \
+                           "Wenn Sie mit dem Nachdenken beginnen, sollten Sie die folgenden Hinweise beachten, um den Kontext zu verdeutlichen:</p>" \
+                           "<p>1. Was war die Situation? Beschreiben Sie sie kurz.</p>" \
+                           "<p>2. Wann ist es passiert? Geben Sie den Zeitrahmen oder das Datum an &#128197;</p>" \
+                           "<p>3. Wo hat sie stattgefunden? Den Schauplatz festlegen  &#128506;&#65039;</p>" \
+                           "<p>4. Wer war noch beteiligt? Nennen Sie die Menschen oder Personen, die mit dem Erlebnis verbunden sind &#128104;</p>" \
+                           "<p>Nehmen Sie sich Zeit, um Ihre Gedanken zu sammeln, und wenn Sie so weit sind, teilen Sie mir die Einzelheiten Ihrer Erfahrungen mit. Ich bin hier, um Sie bei Ihren Überlegungen zu unterstützen und Ihnen Feedback zu geben. &#128521;</p>"
         session_state["state"] = 2
-    # Emotions
+       # Emotions
     elif(session_state["state"] == 2):
-            session_state["context"] += text + " "
-            session_state["text"] += text + " "
-            botReply = "<p> Thank you for providing me with the context. Now it is time to delve into your emotions and share your emotional response.</p>" \
-                            "<p>Think back to that specific moment or event. What were the predominant emotions you felt during that time? Did you experience joy, excitement, sadness, anger, fear, or a combination of emotions? Try to identify and describe the emotions that were most prominent to you.</p>" \
-                            "<p>Take your time and express your emotions openly. I'm here to listen and provide support throughout your reflective journey &#128519;</p>"
-            session_state["state"] = 3
-    # Evaluation + Analysis
+        session_state["context"] += text + " "
+        session_state["text"] += text + " "
+        botReply = "<p> Danke, dass Sie mir den Kontext geliefert haben. Jetzt ist es an der Zeit, in Ihre Gefühle einzutauchen und Ihre emotionale Reaktion mitzuteilen.</p>" \
+                               "<p>Denken Sie an diesen speziellen Moment oder dieses Ereignis zurück. Was waren die vorherrschenden Gefühle, die Sie in dieser Zeit empfunden haben? Versuchen Sie, diese Gefühle zu identifizieren und zu beschreiben &#128519;<</p>"
+        session_state["state"] = 3
+       # Evaluation + Analysis
     elif(session_state["state"] == 3):
-            session_state["emotions"] += text + " "
-            session_state["text"] += text + " "
+        session_state["emotions"] += text + " "
+        session_state["text"] += text + " "
 
-            botReply = "<p>Now, let's delve deeper into your reflection. Describe what went well during that experience. What aspects or actions contributed to its success? Consider the positive outcomes, achievements, or moments of satisfaction that you can recall.</p>" \
-                       "<p>On the other hand, let's also acknowledge the aspects that didn't go as planned or didn't meet your expectations. What were the challenges, obstacles, or areas that could have been improved? Reflect on the factors that hindered the desired outcome or caused frustration.</p>" \
-                       "<p>Try also to think about the potential underlying causes and effects of the experience.</p>"
-            session_state["state"] = 4
+        botReply = "<p>Lassen Sie uns nun tiefer in Ihre Überlegungen eintauchen. Beschreiben Sie, was während dieser Erfahrung gut gelaufen ist. Welche Aspekte oder Handlungen trugen zum Erfolg bei? </p>" \
+                          "<p>Andererseits sollten wir auch die Aspekte berücksichtigen, die nicht wie geplant gelaufen sind oder nicht Ihren Erwartungen entsprochen haben.</p>" \
+                          "<p>Versuchen Sie auch, über die möglichen Ursachen und Auswirkungen der Erfahrung nachzudenken.</p>"
+        session_state["state"] = 4
 
     elif(session_state["state"] == 4):
-            session_state["analysis"] += text + " "
-            session_state["text"] += text + " "
+        session_state["analysis"] += text + " "
+        session_state["text"] += text + " "
 
-            botReply = "<p>Good! Now consider what new insights, skills, or knowledge you have gained from it. What did you learn about yourself, others, or the situation? Did you discover any strengths or weaknesses?</p>" \
-                      "<p>Reflect on the lessons learned and the ways in which this experience has contributed to your personal and professional growth.</p>"
+        botReply = "<p>Gut! Überlegen Sie nun, welche neuen Einsichten, Fähigkeiten oder Kenntnisse Sie daraus gewonnen haben. Was haben Sie über sich selbst, andere oder die Situation gelernt? </p>" \
 
-            session_state["state"] = 5
+        session_state["state"] = 5
 
     elif(session_state["state"] == 5):
-            session_state["evaluation"] += text + " "
-            session_state["text"] += text + " "
+        session_state["evaluation"] += text + " "
+        session_state["text"] += text + " "
 
-            botReply = "<p>Now, let's take it a step further. Based on what you have learned, think about specific steps you can take to build on this newfound knowledge and skills. How can you apply what you have learned to future endeavors? </p>" \
-                      "<p>Consider setting goals or creating an action plan to implement the lessons learned and maximize the benefits of this experience.</p>"
+        botReply = "<p>Lassen Sie uns nun einen Schritt weiter gehen. Wie können Sie das, was Sie gelernt haben, in Zukunft anwenden? </p>" \
+                         "<p>Erwägen Sie, sich Ziele zu setzen oder einen Aktionsplan zu erstellen, um die gewonnenen Erkenntnisse umzusetzen.</p>"
 
-            session_state["state"] = 6
+        session_state["state"] = 6
 
     elif(session_state["state"] == 6):
-            session_state["plan"] += text + " "
-            session_state["text"] += text + " "
+        session_state["plan"] += text + " "
+        session_state["text"] += text + " "
 
-            botReply = "<p>Perfect &#127881; You have successfully reflected in a proper way</p>" \
-            "<p> Here is a general feedback on your reflection: </p>"
-   # feedback
+        botReply = "<p>Perfekt &#127881; Sie haben erfolgreich in angemessener Weise reflektiert</p>" \
+               "<p>Um ein allgemeines Feedback zu Ihrer Reflexion zu erhalten, klicken Sie auf die Schaltfläche 'Einblicke', die gerade oben erschienen ist  </p>"
+        botReply += "<p>Wenn Sie neu beginnen möchten, können Sie die Seite aktualisieren.</p>"
 
+        session_state["state"] = 7
 
-
-            #botReply += "<p>" + feedback_intro + " Regarding the body: " + feedback_body + " For the conclusion, " + feedback_conclusion + " Finally, " + feedback_first_person +"</p>"
-
-            botReply += "<p>Let me know if you want to start again</p>"
-
-            session_state["state"] = 7
 
     else:
         try:
@@ -351,7 +410,7 @@ def receive_text():
     # Plan
     plan_future_tense = EvaluationHandler.__get_future(plan)
 
-    first_person_count = EvaluationHandler.__get_first_person_count(received_text)
+    #first_person_count = EvaluationHandler.__get_first_person_count(received_text)
 
     data = {
         "context_past_tense": context_past_tense,
@@ -364,7 +423,7 @@ def receive_text():
         "evaluation_subjectivity": evaluation_subjectivity,
         "plan_future_tense": plan_future_tense,
         "text": received_text,
-        "first_person_count": first_person_count
+        "first_person_count": 0
     }
 
     return jsonify(data)
