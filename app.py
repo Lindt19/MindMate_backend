@@ -212,8 +212,9 @@ def get_bot_response():
        # Context
     elif("beginnen" in text):
         botReply = "<p> Los geht's! Es ist an der Zeit, sich auf eine nachdenkliche Reise zu begeben und eine vergangene Erfahrung zu erkunden &#128640;</p>" \
-                           "<p>Denken Sie an ein bestimmtes Ereignis oder eine Situation in Ihrem Leben, die für Sie von Bedeutung ist. Das kann eine Errungenschaft, eine Herausforderung, eine Beziehung oder eine andere Erfahrung sein, die einen Einfluss auf Sie hatte." \
-                           "Wenn Sie mit dem Nachdenken beginnen, sollten Sie die folgenden Hinweise beachten, um den Kontext zu verdeutlichen:</p>" \
+                           "<p> Beschreiben Sie eine neue berufliche Situation wie Sie sie im Praxisalltag erlebt haben (bitte wählen Sie keine Situation die Sie zuvor bereits in einem Portfolio reflektiert haben).</p>" \
+                           "<p> Bitte investieren Sie maximal 20 min ins Beschreibung und maximal 20 min ins Reflektieren. </p>"\
+                           "<p> Wenn Sie mit dem Nachdenken beginnen, sollten Sie die folgenden Hinweise beachten, um den Kontext zu verdeutlichen:</p>" \
                            "<p>1. Was war die Situation? Beschreiben Sie sie kurz.</p>" \
                            "<p>2. Wann ist es passiert? Geben Sie den Zeitrahmen oder das Datum an &#128197;</p>" \
                            "<p>3. Wo hat sie stattgefunden? Den Schauplatz festlegen  &#128506;&#65039;</p>" \
@@ -225,7 +226,7 @@ def get_bot_response():
         session_state["context"] += text + " "
         session_state["text"] += text + " "
         botReply = "<p> Danke, dass Sie mir den Kontext geliefert haben. Jetzt ist es an der Zeit, in Ihre Gefühle einzutauchen und Ihre emotionale Reaktion mitzuteilen.</p>" \
-                               "<p>Denken Sie an diesen speziellen Moment oder dieses Ereignis zurück. Was waren die vorherrschenden Gefühle, die Sie in dieser Zeit empfunden haben? Versuchen Sie, diese Gefühle zu identifizieren und zu beschreiben &#128519;<</p>"
+                               "<p>Denken Sie an diesen speziellen Moment oder dieses Ereignis zurück. Was waren die vorherrschenden Gefühle, die Sie in dieser Zeit empfunden haben? Versuchen Sie, diese Gefühle zu identifizieren und zu beschreiben &#128519;</p>"
         session_state["state"] = 3
        # Evaluation + Analysis
     elif(session_state["state"] == 3):
@@ -258,9 +259,11 @@ def get_bot_response():
         session_state["plan"] += text + " "
         session_state["text"] += text + " "
 
-        botReply = "<p>Perfekt &#127881; Sie haben erfolgreich in angemessener Weise reflektiert</p>" \
-               "<p>Um ein allgemeines Feedback zu Ihrer Reflexion zu erhalten, klicken Sie auf die Schaltfläche 'Einblicke', die gerade oben erschienen ist  </p>"
+        botReply = "<p>Perfekt &#127881; Sie haben erfolgreich reflektier! </p>" \
+               "<p>Um ein allgemeines Feedback zu Ihrer Reflexion zu erhalten, klicken Sie auf den Button 'Insights', der oben in der Leiste erschienen ist. Oder den Button 'Feedback', die oberhalb erscheint.</p>"
         botReply += "<p>Wenn Sie neu beginnen möchten, können Sie die Seite aktualisieren.</p>"
+        botReply += "<h4> Feedback </h4>" \
+                            "<button class=\"chatSuggest\" onclick=\"displayFeedback();return false;\">Feedback</button>"
 
         session_state["state"] = 7
 

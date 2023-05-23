@@ -3,28 +3,31 @@ categories:
   - Conversations
 conversations:
   -
-    - "Wie spät ist es?"
+    - Wo ist das Feedback?
+    - "Wenn Sie bereits reflektiert haben, sollte das Feedback erscheinen, indem Sie auf die Dashboard button"
+  -
+    - Wie spät ist es?
     - getTIME
   -
-    - "Wie viel Zeit haben wir?"
+    - Wie viel Zeit haben wir?
     - getTIME
   -
-    - "Können Sie mir sagen, wie spät es ist?"
+    - Können Sie mir sagen, wie spät es ist?
     - getTIME
   -
-    - "Sagen Sie mir, wie spät es ist"
+    - Sagen Sie mir, wie spät es ist
     - getTIME
   -
-    - "Wissen Sie, wie spät es ist?"
+    - Wissen Sie, wie spät es ist?
     - getTIME
   -
-    - "Welcher Tag ist heute?"
+    - Welcher Tag ist heute?
     - getDATE
   -
-    - "Was ist das für ein Tag heute?"
+    - Was ist das für ein Tag heute?
     - getDATE
   -
-    - "Welcher Tag ist heute?"
+    - Welcher Tag ist heute?
     - getDATE
   -
     - Datum
@@ -125,19 +128,18 @@ conversations:
     - "Ich liebe dich auch!"
   -
     - Introduction
-    - "<p>Hallo, ich bin MindMate. Ich werde Ihnen helfen, Ihre reflektierenden Schriften zu verbessern.</p>
-      <p>Zu diesem Zweck werden wir gemeinsam einige wesentliche theoretische Konzepte durchgehen,
-               und ich werde Ihnen auch zeigen, wie Sie Ihre Überlegungen in Ihrem Schreiben strukturieren können.</p>
-      <p>Um mit dem Reflektieren zu beginnen, können Sie auf die Schaltfläche 'Reflektieren beginnen' unten klicken. Wir werden ein dynamisches Gespräch führen, bei dem ich am Ende Leitlinien und Feedback geben kann.  </p>
-    <p>Ich bin noch in der Ausbildung, aber ich werde mein Bestes tun, um Ihnen zu helfen! Verwenden Sie die Schaltflächen, um durch die Lernumgebung zu navigieren. &#128515; </p>
+    - "<p>Hallo, ich bin MindMate. Ich werde Ihnen helfen, bessere Reflexionen zu schreiben.</p>
+      <p>Zu diesem Zweck werden wir gemeinsam einige wesentliche theoretische Konzepte durchgehen, und ich werde Ihnen auch zeigen, wie Sie Ihre Überlegungen in Ihren Reflexionen strukturieren können.</p>
+      <p>Um mit dem Reflektieren zu beginnen, können Sie auf den Button 'Reflektieren beginnen' unten klicken. Wir werden ein Gespräch führen, bei dem ich am Ende Feedback auf Ihren Text geben kann.  </p>
+    <p>Ich bin noch in der Ausbildung, aber ich werde mein Bestes tun, um Ihnen zu helfen! Verwenden Sie die untenstehenden Schaltflächen, um durch die Lernumgebung zu navigieren. &#128515; </p>
     <h4> Lernen </h4>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('Was ist reflektierendes Schreiben?');\">Was ist reflektierendes Schreiben?</button>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('Warum ist das Führen eines Reflexionsjournals für den Lernprozess nützlich?');\">Warum ist das Führen eines Reflexionsjournals für den Lernprozess nützlich?</button>
+    <button class=\"chatSuggest\" onclick=\"chatSuggest('Warum ist das Führen eines Reflexionsjournals für den Lernprozess nützlich?');\">Warum ist das Führen eines Reflexionsjournals nützlich?</button>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('Wie kann ich meine Reflexionen verbessern?');\">Wie kann ich meine Reflexionen verbessern?</button>
     <h4> Weitere Informationen </h4>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('Wie können Sie mir helfen, MindMate?');\">Wie können Sie mir helfen, MindMate?</button>
-    <h4> Nachdenken beginnen </h4>
-      <button class=\"chatSuggest\" onclick=\"chatSuggest('nachdenken beginnen');\">Nachdenken beginnen</button>"
+    <h4> Reflektieren beginnen </h4>
+      <button class=\"chatSuggest\" onclick=\"chatSuggest('Reflektieren beginnen');\">Reflektieren beginnen</button>"
 
   -
     - Ich möchte mehr über die Bedeutung von Reflexionen erfahren
@@ -147,8 +149,8 @@ conversations:
     <button class=\"chatSuggest\" onclick=\"chatSuggest('Was ist reflektierendes Schreiben?');\">Was ist reflektierendes Schreiben?</button>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('Warum ist das Führen eines Reflexionsjournals in Lernprozessen nützlich?');\">Warum ist das Führen eines Reflexionsjournals in Lernprozessen nützlich?</button>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('Wie kann ich meine Reflexionen verbessern?');\">Wie kann ich meine Reflexionen verbessern?</button>
-    <h4> Nachdenken beginnen </h4>
-         <button class=\"chatSuggest\" onclick=\"chatSuggest('nachdenken beginnen');\">Nachdenken beginnen</button>"
+    <h4> Reflektieren beginnen </h4>
+         <button class=\"chatSuggest\" onclick=\"chatSuggest('Reflektieren beginnen');\">Reflektieren beginnen</button>"
 
   -
     - Können wir uns die Theorie ansehen?
@@ -158,22 +160,22 @@ conversations:
                <button class=\"chatSuggest\" onclick=\"chatSuggest('Was ist reflektierendes Schreiben?');\">Was ist reflektierendes Schreiben?</button>
                <button class=\"chatSuggest\" onclick=\"chatSuggest('Warum ist das Führen eines Reflexionsjournals in Lernprozessen nützlich?');\">Warum ist das Führen eines Reflexionsjournals in Lernprozessen nützlich?</button>
                <button class=\"chatSuggest\" onclick=\"chatSuggest('Wie kann ich meine Reflexionen verbessern?');\">Wie kann ich meine Reflexionen verbessern?</button>
-               <h4> Nachdenken beginnen </h4>
-                    <button class=\"chatSuggest\" onclick=\"chatSuggest('nachdenken beginnen');\">Nachdenken beginnen</button>"
+               <h4> Reflektieren beginnen </h4>
+                    <button class=\"chatSuggest\" onclick=\"chatSuggest('Reflektieren beginnen');\">Reflektieren beginnen</button>"
   -
     - Wie kann ich meine Reflexionen verbessern?
     - "<p>Im Folgenden finden Sie einige Tipps, wie Schüler ihre Reflexionsfähigkeiten verbessern können:</p>
-    <p>Stellen Sie bohrende Fragen: Anstatt einfach nur zu erzählen, was passiert ist, sollten Sie tiefer gehen und sich selbst Fragen stellen, die zum Nachdenken anregen. </p>
+    <p>Stellen Sie knifflige Fragen: Anstatt einfach nur zu erzählen, was passiert ist, sollten Sie tiefer gehen und sich selbst Fragen stellen, die zum Nachdenken anregen.</p>
     <p>Seien Sie ehrlich und offen: Das Reflektieren erfordert Ehrlichkeit und Selbsterkenntnis. Seien Sie bereit, sowohl die positiven als auch die negativen Aspekte der Erfahrung sowie Ihre eigenen Stärken und Schwächen anzuerkennen.</p>
-    <p>Üben Sie sich regelmäßig in Selbstreflexion: Machen Sie das Nachdenken zur Gewohnheit, indem Sie sich Zeit für die Selbstbeobachtung nehmen. Erwägen Sie, Tagebuch zu führen, zu meditieren oder sinnvolle Gespräche mit Mentoren oder Gleichaltrigen zu führen, um den Reflexionsprozess zu erleichtern. </p>
-    <p>Verwenden Sie einen strukturierten Rahmen: Verwenden Sie Reflexionsrahmen oder -modelle wie den Gibbs'schen Reflexionszyklus, den Kolb'schen Zyklus des Erfahrungslernens oder die Bloom'sche Taxonomie der Reflexion. Diese Rahmen bieten eine Struktur, um Ihren Reflexionsprozess zu leiten und eine umfassende Analyse zu gewährleisten. </p>
+    <p>Üben Sie sich regelmäßig in Selbstreflexion: Machen Sie das Nachdenken zur Gewohnheit, indem Sie sich Zeit für die Selbstbeobachtung nehmen. Erwägen Sie, Tagebuch zu führen, zu meditieren oder sinnvolle Gespräche mit Mentoren oder Gleichaltrigen zu führen, um den Reflexionsprozess zu erleichtern.</p>
+    <p>Verwenden Sie einen strukturierten Rahmen: Verwenden Sie Reflexionsrahmen oder -modelle wie den Gibbs'schen Reflexionszyklus, den Kolb'schen Zyklus des Erfahrungslernens oder die Bloom'sche Taxonomie der Reflexion. Diese Rahmen bieten eine Struktur, um Ihren Reflexionsprozess zu leiten und eine umfassende Analyse zu gewährleisten.</p>
            <p> Hier erfahren Sie mehr über reflektierendes Schreiben: </p>
     <h4>Theoretischer Überblick</h4>
                    <button class=\"chatSuggest\" onclick=\"chatSuggest('Was ist reflektierendes Schreiben?');\">Was ist reflektierendes Schreiben?</button>
                    <button class=\"chatSuggest\" onclick=\"chatSuggest('Warum ist das Führen eines Reflexionsjournals in Lernprozessen nützlich?');\">Warum ist das Führen eines Reflexionsjournals in Lernprozessen nützlich?</button>
                    <button class=\"chatSuggest\" onclick=\"chatSuggest('Wie kann ich meine Reflexionen verbessern?');\">Wie kann ich meine Reflexionen verbessern?</button>
-                   <h4> Nachdenken beginnen </h4>
-                        <button class=\"chatSuggest\" onclick=\"chatSuggest('nachdenken beginnen');\">Nachdenken beginnen</button>"
+                   <h4> Reflektieren beginnen </h4>
+                        <button class=\"chatSuggest\" onclick=\"chatSuggest('Reflektieren beginnen');\"Reflektieren beginnen</button>"
   -
     - Was können Sie sonst noch tun?
     - "<p>Natürlich bin ich bestrebt, Ihnen zu helfen, Ihre Reflexionsfähigkeiten zu verbessern, aber ein bisschen Spaß und eine kurze Pause können auch nicht schaden.</p>
@@ -183,7 +185,7 @@ conversations:
   -
     - Joke!
     - "<p> Was sagt ein Krokodil, das einen Clown gefressen hat? 'Schmeckt komisch!' &#128584; &#128518;</p>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('Einführung');\">Zurück zur Einleitung</button>"
+    <button class=\"chatSuggest\" onclick=\"chatSuggest('Introduction');\">Zurück zur Einleitung</button>"
   -
     - Das kann ich nicht tun.
     - "<p>Es tut mir leid, das kann ich nicht tun.</p>
@@ -214,14 +216,14 @@ conversations:
     <button class=\"chatSuggest\" onclick=\"chatSuggest('Können wir uns die Theorie ansehen?');\">Können wir uns die Theorie ansehen?</button>"
   -
     - Was ist reflektierendes Schreiben?
-    - "<p>Reflektierendes Schreiben ist eine Form des Schreibens, die Sie dazu anregt, Ihre Erfahrungen, Gedanken, Gefühle und Überzeugungen zu erkunden und zu reflektieren. Es ist eine Möglichkeit, tiefgründig über ein bestimmtes Thema oder eine Erfahrung nachzudenken und das eigene persönliche Wachstum und die eigene Entwicklung zu untersuchen. &#128172;</p>
-           <p>Es gibt wirklich tolle Videos, aus denen man eine Menge lernen kann. Hier ist eines meiner Lieblingsvideos bis jetzt:</p>
+    - "<p>Reflektierendes Schreiben ist eine Form des Schreibens, die Sie dazu anregt, Ihre Erfahrungen, Gedanken, Gefühle und Überzeugungen zu erkunden und zu reflektieren. Es ist eine Möglichkeit, tiefgründig über ein bestimmtes Thema oder eine Erfahrung nachzudenken und dadurch das eigene persönliche Wachstum und die eigene Entwicklung zu stärken. &#128172;</p>
+                  <p>Es gibt wirklich tolle Videos, aus denen man eine Menge lernen kann. Hier ist eines meiner Lieblingsvideos:</p>
            <h4>Lernmaterial</h4>
     <button class=\"chatSuggest\" onclick=\"playVideo('SntBj0FIApw');return false;\">Video: Überblick über reflektierendes Schreiben </button>
     <h4>Mehr Details</h4>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('Könnten Sie die Struktur von Reflexionstexten genauer erläutern?');\">Aufbau von reflektierenden Texten</button>
-       <h4> Nachdenken beginnen </h4>
-             <button class=\"chatSuggest\" onclick=\"chatSuggest('nachdenken beginnen');\">Nachdenken beginnen</button>"
+       <h4> Reflektieren beginnen </h4>
+             <button class=\"chatSuggest\" onclick=\"chatSuggest('Reflektieren beginnen');\">Reflektieren beginnen</button>"
   -
     - Könnten Sie die Struktur von Reflexionstexten näher erläutern?
     - "<p>Ja, natürlich! Ich kann Ihnen den Aufbau eines nachdenklichen Aufsatzes näher erläutern.</p>
