@@ -181,7 +181,9 @@ conversations:
     - "<p>Natürlich bin ich bestrebt, Ihnen zu helfen, Ihre Reflexionsfähigkeiten zu verbessern, aber ein bisschen Spaß und eine kurze Pause können auch nicht schaden.</p>
               <p>Soll ich Ihnen meinen Lieblingswitz erzählen? &#128586;</p>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('joke');\">Joke!</button>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('Introduction');\">Back to the introduction</button>"
+    <button class=\"chatSuggest\" onclick=\"chatSuggest('Introduction');\">Back to the introduction</button>
+    <h4> Reflektieren beginnen </h4>
+    <button class=\"chatSuggest\" onclick=\"chatSuggest('Reflektieren beginnen');\">Reflektieren beginnen</button>"
   -
     - Joke!
     - "<p> Was sagt ein Krokodil, das einen Clown gefressen hat? 'Schmeckt komisch!' &#128584; &#128518;</p>
@@ -213,7 +215,9 @@ conversations:
                Ich helfe Ihnen, diese Aspekte zu berücksichtigen und so eine gute und ausgewogene Reflexionsstruktur aufzubauen. &#128521; </p>
     <button class=\"chatSuggest\" onclick=\"chatSuggest('Wie können Sie mir sonst noch helfen?');\">Wie können Sie mir sonst noch helfen?</button>
     <h4> Theorie </h4>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('Können wir uns die Theorie ansehen?');\">Können wir uns die Theorie ansehen?</button>"
+    <button class=\"chatSuggest\" onclick=\"chatSuggest('Können wir uns die Theorie ansehen?');\">Können wir uns die Theorie ansehen?</button>
+    <h4> Reflektieren beginnen </h4>
+          <button class=\"chatSuggest\" onclick=\"chatSuggest('Reflektieren beginnen');\">Reflektieren beginnen</button>"
   -
     - Was ist reflektierendes Schreiben?
     - "<p>Reflektierendes Schreiben ist eine Form des Schreibens, die Sie dazu anregt, Ihre Erfahrungen, Gedanken, Gefühle und Überzeugungen zu erkunden und zu reflektieren. Es ist eine Möglichkeit, tiefgründig über ein bestimmtes Thema oder eine Erfahrung nachzudenken und dadurch das eigene persönliche Wachstum und die eigene Entwicklung zu stärken. &#128172;</p>
@@ -234,7 +238,10 @@ conversations:
            <p>Schlussfolgerung: Die Schlussfolgerung sollte die wichtigsten Punkte und Ideen des Reflexionstextes zusammenfassen und eine abschließende Reflexion über das Thema oder die Erfahrung liefern. Der Autor kann auch Vorschläge für künftige Maßnahmen oder weitere Überlegungen machen.</p>
            <h4>Lernmaterial</h4>
            <p>Hier ist ein großartiges Video, das mehr ins Detail geht. </p>
-    <button class=\"chatSuggest\" onclick=\"playVideo('SntBj0FIApw');return false;\">Video: Überblick über reflektierendes Schreiben</button>"
+    <button class=\"chatSuggest\" onclick=\"playVideo('SntBj0FIApw');return false;\">Video: Überblick über reflektierendes Schreiben</button>
+    <h4> Reflektieren beginnen </h4>
+          <button class=\"chatSuggest\" onclick=\"chatSuggest('Reflektieren beginnen');\">Reflektieren beginnen</button>"
+
 
   -
     - Warum ist das Führen eines Reflexionsjournals für den Lernprozess nützlich?
@@ -242,4 +249,6 @@ conversations:
                 Der Einzelne kann seine Stärken und Schwächen, Werte und Überzeugungen erkennen, was ihm helfen kann, bessere Entscheidungen zu treffen und neue Fähigkeiten und Strategien für die Zukunft zu entwickeln.
                 Außerdem werden die Fortschritte des Einzelnen im Laufe der Zeit dokumentiert.</p>
            <h4>Theoretischer Überblick</h4>
-    <button class=\"chatSuggest\" onclick=\"chatSuggest('Könnten Sie mehr über die Struktur von Reflexionstexten erklären?');\">Aufbau von reflektierenden Texten</button>"
+    <button class=\"chatSuggest\" onclick=\"chatSuggest('Könnten Sie mehr über die Struktur von Reflexionstexten erklären?');\">Aufbau von reflektierenden Texten</button>
+    <h4> Reflektieren beginnen </h4>
+            <button class=\"chatSuggest\" onclick=\"chatSuggest('Reflektieren beginnen');\">Reflektieren beginnen</button>"
