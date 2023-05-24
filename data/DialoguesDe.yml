@@ -174,8 +174,9 @@ conversations:
                    <button class=\"chatSuggest\" onclick=\"chatSuggest('Was ist reflektierendes Schreiben?');\">Was ist reflektierendes Schreiben?</button>
                    <button class=\"chatSuggest\" onclick=\"chatSuggest('Warum ist das Führen eines Reflexionsjournals in Lernprozessen nützlich?');\">Warum ist das Führen eines Reflexionsjournals in Lernprozessen nützlich?</button>
                    <button class=\"chatSuggest\" onclick=\"chatSuggest('Wie kann ich meine Reflexionen verbessern?');\">Wie kann ich meine Reflexionen verbessern?</button>
-                   <h4> Reflektieren beginnen </h4>
-                        <button class=\"chatSuggest\" onclick=\"chatSuggest('Reflektieren beginnen');\"Reflektieren beginnen</button>"
+    <h4> Reflektieren beginnen </h4>
+         <button class=\"chatSuggest\" onclick=\"chatSuggest('Reflektieren beginnen');\">Reflektieren beginnen</button>"
+
   -
     - Was können Sie sonst noch tun?
     - "<p>Natürlich bin ich bestrebt, Ihnen zu helfen, Ihre Reflexionsfähigkeiten zu verbessern, aber ein bisschen Spaß und eine kurze Pause können auch nicht schaden.</p>
