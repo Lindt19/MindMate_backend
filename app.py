@@ -19,11 +19,6 @@ from flask_cors import *
 import EvaluationHandler
 from FeedbackGenerator import *
 
-# chatGPT configuration
-OPENAIKEY = "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"
-openai.api_key = OPENAIKEY
-MODEL = "gpt-3.5-turbo"
-
 
 nltk.download("punkt")
 
@@ -134,6 +129,7 @@ def get_bot_response():
         session_state["state"] = 0
     print(session_state["state"])
 
+#  This is the english version
 #    """  if("chat" in text):
 #         botReply = "<p>You are now using the interactive reflection version. It consists of a normal conversation where I will ask you questions to guide your reflection and provide feedback accordingly.</p>" \
 #                         "<p>I can also provide guidelines on how to write reflective texts. Whenever you feel ready, you can click on the 'start reflecting' button bellow. You will have the chance to send me with your own text so that I can" \
@@ -200,6 +196,7 @@ def get_bot_response():
 #
 #             session_state["state"] = 7
 #    """
+# This is the german version
     if("chat" in text):
         botReply = "<p>You are now using the interactive reflection version. It consists of a normal conversation where I will ask you questions to guide your reflection and provide feedback accordingly.</p>" \
                            "<p>I can also provide guidelines on how to write reflective texts. Whenever you feel ready, you can click on the 'start reflecting' button bellow. You will have the chance to send me with your own text so that I can" \
@@ -283,6 +280,7 @@ def get_bot_response():
         elif botReply == "getDATE":
             botReply = getDate()
 
+    # Disable Logging
     #writeCsv(currentPath + "/log/botLog.csv", [text, botReply])
     data = {
     "botReply": botReply,
@@ -297,7 +295,6 @@ def send_feedback():
     data = request.get_json()
     bot = data.get("bot")
     rating = data.get("rating")
-    # ux = data.get("ux")
     text = data.get("text")
     improvement = data.get("improve")
 
@@ -333,7 +330,6 @@ def evaluate():
     session_state = states[uuid]
     # used for not english text
     translated_text = EvaluationHandler.__translate_to_english(session_state["text"])
-    #print(translated_text)
     # Context
     context =  session_state["context"]
     translated_context = EvaluationHandler.__translate_to_english(session_state["text"])
@@ -356,8 +352,6 @@ def evaluate():
     # Plan
     translated_plan = EvaluationHandler.__translate_to_english( session_state["plan"])
     plan_future_tense = EvaluationHandler.__get_future(translated_plan)
-
-    #first_person_count = EvaluationHandler.__get_first_person_count(received_text)
 
     data = {
                 "context_past_tense": context_past_tense,
@@ -412,8 +406,6 @@ def receive_text():
     evaluation_subjectivity = EvaluationHandler.__get_subjective(evaluation)
     # Plan
     plan_future_tense = EvaluationHandler.__get_future(plan)
-
-    #first_person_count = EvaluationHandler.__get_first_person_count(received_text)
 
     data = {
         "context_past_tense": context_past_tense,

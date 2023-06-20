@@ -17,6 +17,15 @@ class Chatomatic:
     questions = []
 
     def _load_from_yaml(self, file_name):
+        """
+            Load questions and answers from a YAML file.
+
+            Args:
+                file_name (str): The name of the YAML file.
+
+            Returns:
+                None
+        """
         with open(file_name, 'r', encoding="utf-8") as f:
             conversations = load(f.read()).data['conversations']
             new_questions = []
@@ -29,43 +38,29 @@ class Chatomatic:
                 # new_questions.append({conversation[0].lower(): answers})
             self.questions = new_questions
 
-    def _load_from_json(self, file_name):
-        with open(file_name, 'r', encoding="utf-8") as f:
-            conversations = json.load(f)['conversations']
-            new_questions = []
-            for conversation in conversations:
-                all_answers = []
-                for answer in conversation['answers']:
-                    all_answers.append(answer)
-                new_questions.append(Question(conversation['question'].lower(), all_answers))
-                # new_questions.append({conversation['question'].lower(): all_answers})
-            self.questions = new_questions
-
-    def _load_from_dataset(self, file_path):
-        if file_path.endswith('.yml') or file_path.endswith('.yaml'):
-            self._load_from_yaml(file_path)
-        elif file_path.endswith('.json'):
-            self._load_from_json(file_path)
-
     def __init__(self, file_path, language="en"):
         """
-        Creates an instance of a static chatbot. Uses the pre-defined questions/answer.
+               Creates an instance of a static chatbot. Uses the pre-defined questions/answers.
+
+               Args:
+                   file_path (str): The path to the YAML file containing the questions and answers.
+                   language (str): The language of the chatbot (default is "en").
+
+               Returns:
+                   None
         """
         self.language = language
-        self._load_from_dataset(file_path)
-
-        # f = open(file_path, 'r', encoding="utf-8")
-        # content = f.read()
-        # f.close()
-
-    # def add_dataset(self, file_path, language="en"):
-    #     if not language in self.qa_databases:
-    #         self.qa_databases[language] = QADatabase()
-    #     self.load_from_dataset(file_path, self.qa_databases[language])
+        self._load_from_yaml(file_path)
 
     def find_answer_to_question(self, question):
         """
-        Finds an exact match to the question prompted by the user. Used for buttons especially.
+                Finds an exact match to the question prompted by the user. Used for buttons especially.
+
+                Args:
+                    question (str): The question prompted by the user.
+
+                Returns:
+                    str: The matched answer or None if no match is found.
         """
         answer = None
         for qa in self.questions:
@@ -76,11 +71,13 @@ class Chatomatic:
 
     def _find_most_similar_question_transformers(self, question):
         """
-        Uses transformer model to find the similarity between the question of the user and predefined possible questions
+                Uses the transformer model to find the most similar pre-defined question to the user's question.
 
-        :param question: string, question of the user
-        :return:
-            String, the bot's response
+                Args:
+                    question (str): The question prompted by the user.
+
+                Returns:
+                    Question: The most similar pre-defined question.
         """
         corpus = [doc.title for doc in self.questions]
         # encode the question from the user and possible asked questions
@@ -95,11 +92,13 @@ class Chatomatic:
 
     def _find_most_similar_question_bm25(self, question):
         """
-        Uses bm25 model to find the similarity between the question of the user and predefined possible questions
+                Uses the BM25 model to find the most similar pre-defined question to the user's question.
 
-        :param question: string, question of the user
-        :return:
-            String, the bot's response
+                Args:
+                    question (str): The question prompted by the user.
+
+                Returns:
+                    Question: The most similar pre-defined question.
         """
         tokenized_corpus = [doc.title.split(" ") for doc in self.questions]
         bm25 = BM25Okapi(tokenized_corpus)
@@ -110,13 +109,15 @@ class Chatomatic:
 
     def answer(self, question, method="transformers"):
         """
-        Tries to find the exact question. If the exact question is found, return pre-defined answer. Otherwise,
-        uses neural model to find the most similar pre-defined question.
+                Tries to find the exact question. If no exact match is found, uses a neural model to find the most similar
+                pre-defined question and returns its answer.
 
-        :param question: string, question of the user
-        :param method: string, neural model to use for question similarity
-        :return :
-            String, possible pre-defined answer
+                Args:
+                    question (str): The question prompted by the user.
+                    method (str): The neural model to use for question similarity (default is "transformers").
+
+                Returns:
+                    str: The pre-defined answer.
         """
         question = question.lower()
         answer = self.find_answer_to_question(question)

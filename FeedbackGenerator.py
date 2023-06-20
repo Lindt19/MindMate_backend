@@ -1,4 +1,5 @@
-
+# This file is not used in the project but can be useful for other implementation
+# It generates feedback text for each metric
 
 def written_polarity(polarity):
     result = ""
@@ -90,6 +91,5 @@ def generate_feedback(subjectivity_intro, subjectivity_body, polarity_body, pola
     result = ""
     result += written_polarity(polarity_body)
     result += written_subjectivity(subjectivity_intro)
-    #result += written_subjectivity_body(subjectivity_body)
     result += written_tenses_pronouns(pronouns, past_intro, future_conclusion)
     return result
